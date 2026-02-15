@@ -1,0 +1,233 @@
+{
+  "locations": [
+    {
+      "id": "village",
+      "name": "Vesnice na okraji lesa",
+      "description": "Tichá vesnice, kde se lidé bojí mluvit o lese.",
+      "items": [],
+      "npcs": ["havel"],
+      "exits": {
+        "les": "forest_edge"
+      }
+    },
+
+    {
+      "id": "forest_edge",
+      "name": "Okraj lesa",
+      "description": "Temné stromy a podivné ticho. Máš pocit, že tě někdo sleduje.",
+      "items": ["notebook"],
+      "npcs": ["karel"],
+      "exits": {
+        "vesnice": "village",
+        "brana": "gate"
+      }
+    },
+
+    {
+      "id": "gate",
+      "name": "Stará zarostlá brána",
+      "description": "Kamenná brána porostlá mechem. Je zamčená.",
+      "items": [],
+      "npcs": [],
+      "exits": {
+        "zpet": "forest_edge",
+        "hranice": "deep_forest"
+      }
+    },
+
+    {
+      "id": "deep_forest",
+      "name": "Les za hranicí",
+      "description": "Temnota je hlubší než kdekoliv jinde. Stíny se hýbou.",
+      "items": ["torch", "boundary_dust"],
+      "npcs": ["nyx", "janik"],
+      "exits": {
+        "brana": "gate",
+        "mesto": "forest_city",
+        "hory": "mountains",
+        "ruiny": "ruins"
+      }
+    },
+
+    {
+      "id": "forest_city",
+      "name": "Lesní město",
+      "description": "Opuštěné město pohlcené lesem.",
+      "items": ["rope"],
+      "npcs": [],
+      "exits": {
+        "les": "deep_forest",
+        "ruiny": "ruins"
+      }
+    },
+
+    {
+      "id": "mountains",
+      "name": "Hornatá oblast",
+      "description": "Nebezpečné hory s úzkými stezkami.",
+      "items": ["mountain_talisman"],
+      "npcs": [],
+      "exits": {
+        "les": "deep_forest",
+        "jeskyne": "final_cave"
+      }
+    },
+
+    {
+      "id": "ruins",
+      "name": "Staré ruiny",
+      "description": "Pozůstatky dávného chrámu.",
+      "items": ["amulet"],
+      "npcs": ["ruins_keeper"],
+      "exits": {
+        "les": "deep_forest",
+        "mesto": "forest_city",
+        "mucirna": "torture",
+        "jeskyne": "final_cave"
+      }
+    },
+
+    {
+      "id": "torture",
+      "name": "Mučírna",
+      "description": "Temné podzemí plné utrpení.",
+      "items": [],
+      "npcs": [],
+      "exits": {
+        "ruiny": "ruins"
+      }
+    },
+
+    {
+      "id": "torture",
+      "name": "Mučírna",
+      "description": "Temné podzemí plné utrpení.",
+      "items": [],
+      "npcs": [],
+      "exits": {
+        "ruiny": "ruins"
+      }
+    },
+
+    {
+      "id": "final_cave",
+      "name": "Jeskyně hranice",
+      "description": "Zde se rozhodne tvůj osud.",
+      "items": [],
+      "npcs": [],
+      "exits": {
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "torch",
+      "name": "Pochodeň",
+      "description": "Osvětluje temnotu.",
+      "usable": true
+    },
+
+    {
+      "id": "notebook",
+      "name": "Starý zápisník",
+      "description": "Obsahuje poznámky předchozího badatele.",
+      "usable": false
+    },
+
+    {
+      "id": "boundary_dust",
+      "name": "Prach z hranice",
+      "description": "Zvláštní prach, který nelze zahodit.",
+      "usable": false
+    },
+
+    {
+      "id": "amulet",
+      "name": "Zakrvácený amulet",
+      "description": "Temný artefakt.",
+      "usable": true
+    },
+
+    {
+      "id": "mountain_talisman",
+      "name": "Horský talisman",
+      "description": "Chrání před horským stínem.",
+      "usable": true
+    },
+
+    {
+      "id": "rope",
+      "name": "Roztrhaný provaz",
+      "description": "Může se hodit.",
+      "usable": true
+    }
+  ],
+
+  "npcs": [
+    {
+      "id": "karel",
+      "name": "Lesník Karel",
+      "description": "Starý lesník, který ví více, než říká.",
+      "dialogue": [
+        "Ten les není normální.",
+        "Pokud půjdeš dál, nemusíš se vrátit."
+      ]
+    },
+
+    {
+      "id": "havel",
+      "name": "Havel",
+      "description": "Vesničan, který se zdá přátelský.",
+      "dialogue": [
+        "Viděl jsem bránu.",
+        "Ale možná si to jen myslím."
+      ]
+    },
+
+    {
+      "id": "janik",
+      "name": "Duch historika Janík",
+      "description": "Duch ztraceného historika.",
+      "dialogue": [
+        "Udělal jsem chybu.",
+        "Neopakuj ji."
+      ]
+    },
+
+    {
+      "id": "nyx",
+      "name": "Nyx",
+      "description": "Tajemná bytost lesa.",
+      "dialogue": [
+        "Hranice tě sleduje.",
+        "Tvá volba rozhodne."
+      ]
+    },
+
+    {
+      "id": "ruins_keeper",
+      "name": "Správce ruin",
+      "description": "Strážce dávných tajemství.",
+      "dialogue": [
+        "Pouze hodný může projít.",
+        "Prokaž svou hodnotu."
+      ]
+    }
+  ],
+
+  "quests": [
+    {
+      "id": "enter_forest",
+      "name": "Vstup do lesa",
+      "description": "Najdi bránu a vstup do lesa.",
+      "completed": false
+    },
+
+    {
+      "id": "find_truth",
+      "name": "Odhal tajemství hranice",
+      "description": "Najdi cestu do jeskyně hranice.",
+      "completed": false
+    }
+  ]
+}
