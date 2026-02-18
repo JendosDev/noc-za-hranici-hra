@@ -5,14 +5,43 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * Třída pro lokace
+ */
 public class Location {
+    /**
+     * Id
+     */
     private String id;
+    /**
+     * Jméno
+     */
     private String name;
+    /**
+     * Popis
+     */
     private String description;
+    /**
+     * Předměty
+     */
     private List<Item> items;
+    /**
+     * NPCs
+     */
     private List<NPC> npcs;
+    /**
+     * Východy
+     */
     private Map<String, Location> exits;
 
+    /**
+     * Vytvoří instanci lokace
+     * Inicializuje proměnné, seznamy a mapu
+     * @param id Id
+     * @param name Jméno
+     * @param description Popis
+     */
     public Location(String id, String name, String description) {
         this.id = id;
         this.name = name;
@@ -72,5 +101,22 @@ public class Location {
         this.exits = exits;
     }
 
+    public void addExit(String direction, Location targetLocation) {
+        exits.put(direction, targetLocation);
+    }
+
     // endregion
+
+    public NPC getNpc(String id) {
+        for (NPC npc : npcs) {
+            if (npc.getId().equals(id)) {
+                return npc;
+            }
+        }
+        return null;
+    }
+
+    public void removeNpc(String id) {
+        npcs.removeIf(npc -> npc.getId().equals(id));
+    }
 }
