@@ -29,24 +29,31 @@ public class GoCommand implements Command {
         this.player = player;
     }
 
+    @Override
+    public String getName() {
+        return "jdi";
+    }
+
     /**
      * Metoda zaznamenává aktuální lokaci hráče
      * Po přechodu hráče přenastaví aktuální lokaci
      * @param direction Směřovaná lokace
      */
     @Override
-    public void execute(String direction) {
-        Location currentLocation = world.getLocation(player.getCurrentLocationId());
-
-        Location nextLocation = currentLocation.getExits().get(direction);
-
-        if (nextLocation == null) {
-            System.out.println("Tímto směrem nelze nemůžeš.");
-            return;
+    public String execute(String direction) {
+        if (direction == null || direction.isEmpty()) {
+            return "Kam chceš jít?";
         }
 
-        player.setCurrentLocationId(nextLocation.getId());
+        Location current = world.getLocation(player.getCurrentLocationId());
+        Location next = current.getExits().get(direction);
 
-        System.out.println("Jsi nyní v: " + nextLocation.getName());
+        if (next == null) {
+            return "Tímto směrem nemůžeš jít.";
+        }
+
+        player.setCurrentLocationId(next.getId());
+
+        return "Nyní jsi v: " + next.getName();
     }
 }
