@@ -120,10 +120,19 @@ public class Location {
         npcs.removeIf(npc -> npc.getId().equals(id));
     }
 
+    /**
+     * Vrací předmět na základě zadaného klíče
+     * @param key Klíč
+     * @return Předmět dle zadaného klíče
+     */
     public Item getItem(String key) {
         return items.get(key);
     }
 
+    /**
+     * Smaže předmět podle zadaného klíče
+     * @param key Klíč
+     */
     public void removeItem(String key) {
         items.remove(key);
     }
