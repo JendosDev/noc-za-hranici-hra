@@ -7,7 +7,7 @@ import java.util.Map;
 
 
 /**
- * Třída pro lokace
+ * Třída reprezentující lokaci ve hře
  */
 public class Location {
     /**
@@ -25,7 +25,7 @@ public class Location {
     /**
      * Předměty
      */
-    private List<Item> items;
+    private Map<String, Item> items;
     /**
      * NPCs
      */
@@ -46,7 +46,7 @@ public class Location {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.items = new ArrayList<>();
+        this.items = new HashMap<>();
         this.npcs = new ArrayList<>();
         this.exits = new HashMap<>();
     }
@@ -77,11 +77,11 @@ public class Location {
         this.description = description;
     }
 
-    public List<Item> getItems() {
+    public Map<String, Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(Map<String, Item> items) {
         this.items = items;
     }
 
@@ -118,5 +118,13 @@ public class Location {
 
     public void removeNpc(String id) {
         npcs.removeIf(npc -> npc.getId().equals(id));
+    }
+
+    public Item getItem(String key) {
+        return items.get(key);
+    }
+
+    public void removeItem(String key) {
+        items.remove(key);
     }
 }
