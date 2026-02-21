@@ -8,14 +8,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Třída reprezentující lokace v souboru
+ */
 public class LocationData {
+    /**
+     * Id
+     */
     private String id;
+    /**
+     * Jméno
+     */
     private String name;
+    /**
+     * Popis
+     */
     private String description;
-    private List<Item> items;
-    private List<NPC> npcs;
+    /**
+     * Předměty lokace
+     */
+    private List<String> items;
+    /**
+     * Postavy lokace
+     */
+    private List<String> npcs;
+    /**
+     * Východy
+     */
     private Map<String, String> exits;
 
+    /**
+     * Vytvoří instanci lokace v souboru
+     * @param id Id
+     * @param name Jméno
+     * @param description Popis
+     */
     public LocationData(String id, String name, String description) {
         this.id = id;
         this.name = name;
@@ -53,19 +80,19 @@ public class LocationData {
         this.description = description;
     }
 
-    public List<Item> getItems() {
+    public List<String> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(List<String> items) {
         this.items = items;
     }
 
-    public List<NPC> getNpcs() {
+    public List<String> getNpcs() {
         return npcs;
     }
 
-    public void setNpcs(List<NPC> npcs) {
+    public void setNpcs(List<String> npcs) {
         this.npcs = npcs;
     }
 
