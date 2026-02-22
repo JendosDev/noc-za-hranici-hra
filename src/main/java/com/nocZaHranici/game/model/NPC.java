@@ -125,8 +125,10 @@ public class NPC {
     public boolean isAlive() {
         if (health <= 0) {
             health = 0;
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
+
+
 }
