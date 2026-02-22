@@ -1,5 +1,7 @@
 package com.nocZaHranici.game.model;
 
+import com.nocZaHranici.game.enums.ItemType;
+
 /**
  * Třída reprezentující předměty ve hře
  */
@@ -20,6 +22,15 @@ public class Item {
      * Použitelnost
      */
     private boolean usable;
+    /**
+     * Typ
+     */
+    private ItemType type;
+    /**
+     * Trvanlivost
+     */
+    private int durability;
+
 
     /**
      * Vytvoří instanci předmětu
@@ -28,13 +39,19 @@ public class Item {
      * @param name Jméno
      * @param description Popis
      * @param usable Použitelnost
+     * @param type Typ
+     * @param durability Trvanlivost
      */
-    public Item(String id, String name, String description, boolean usable) {
+    public Item(String id, String name, String description,
+                boolean usable, ItemType type, int durability) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.usable = usable;
+        this.type = type;
+        this.durability = durability;
     }
+
 
     // region get, set
     public String getId() {
@@ -67,6 +84,22 @@ public class Item {
 
     public void setUsable(boolean usable) {
         this.usable = usable;
+    }
+
+    public ItemType getType() {
+        return type;
+    }
+
+    public void setType(ItemType type) {
+        this.type = type;
+    }
+
+    public int getDurability() {
+        return durability;
+    }
+
+    public void setDurability(int durability) {
+        this.durability = durability;
     }
 
     // endregion
