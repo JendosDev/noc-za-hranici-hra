@@ -125,42 +125,54 @@
       "id": "torch",
       "name": "Pochodeň",
       "description": "Osvětluje temnotu.",
-      "usable": true
+      "usable": true,
+      "type": "TORCH",
+      "durability": 3
     },
 
     {
       "id": "notebook",
       "name": "Starý zápisník",
       "description": "Obsahuje poznámky předchozího badatele.",
-      "usable": false
+      "usable": false,
+      "type": "NOTEBOOK",
+      "durability": -1
     },
 
     {
       "id": "boundary_dust",
       "name": "Prach z hranice",
       "description": "Zvláštní prach, který nelze zahodit.",
-      "usable": false
+      "usable": false,
+      "type": "BOUNDARY_DUST",
+      "durability": 0
     },
 
     {
       "id": "amulet",
       "name": "Zakrvácený amulet",
       "description": "Temný artefakt.",
-      "usable": true
+      "usable": true,
+      "type": "BLOODY_AMULET",
+      "durability": -1
     },
 
     {
       "id": "mountain_talisman",
       "name": "Horský talisman",
       "description": "Chrání před horským stínem.",
-      "usable": true
+      "usable": true,
+      "type": "MOUNTAIN_TALISMAN",
+      "durability": -1
     },
 
     {
       "id": "rope",
       "name": "Roztrhaný provaz",
       "description": "Může se hodit.",
-      "usable": true
+      "usable": true,
+      "type": "ROPE",
+      "durability": 1
     }
   ],
 
