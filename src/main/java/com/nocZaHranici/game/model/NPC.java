@@ -114,7 +114,16 @@ public class NPC {
      * Vrací dialog postavy
      * @return Dialog postavy
      */
-    public String talk() {
+    public String talk(Player player) {
+        if (dialogue == null || dialogue.isEmpty()) {
+            return "Postava mlčí.";
+        }
+
+        // příklad reakce podle questů
+        if (player.getQuests().containsKey(id)) {
+            return dialogue.get(1); 
+        }
+
         return dialogue.get(0);
     }
 
