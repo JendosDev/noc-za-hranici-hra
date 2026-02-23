@@ -1,5 +1,6 @@
 package com.nocZaHranici.game.model;
 
+import com.nocZaHranici.game.Game;
 import com.nocZaHranici.game.enums.ItemType;
 
 /**
@@ -112,5 +113,68 @@ public class Item {
                 ", description='" + description + '\'' +
                 ", usable=" + usable +
                 '}';
+    }
+
+    public String use(Game game, Player player) {
+        if (!usable) {
+            return "Tento předmět nelze použít.";
+        }
+
+        switch (type) {
+            case RUSTY_KEY:
+                return useRustyKey(game, player);
+
+            case TORCH:
+                return useTorch(player);
+
+            case NOTEBOOK:
+                player.setNotebookRead(true);
+                return "Pročetl jsi starý zápisník.";
+
+            case BLOODY_AMULET:
+                player.setAmuletEquipped(true);
+                return "Nasadil sis zakrvácený amulet.";
+
+            case MOUNTAIN_TALISMAN:
+                player.setMountainProtection(true);
+                return "Cítíš ochranu horského talismanu.";
+
+            case ROPE:
+                return "Použil jsi provaz.";
+
+            case BOUNDARY_DUST:
+                return "Prach z hranice nelze odstranit.";
+
+            default:
+                return "Nelze použít.";
+        }
+    }
+
+    private String useRustyKey(Game game, Player player) {
+        Location location = game.getWorld()
+                .getLocation(player.getCurrentLocationId());
+
+        if (location.isHasGate()) {
+            location.unlockGate();
+            player.getInventory().removeItem(id);
+            return "Odemknul jsi starou bránu.";
+        }
+        return "Tady není co odemykat.";
+    }
+
+    private String useTorch(Player player) {
+
+        if (durability <= 0) {
+            return "Pochodeň už dohořela.";
+        }
+
+        durability--;
+
+        if (durability == 0) {
+            player.getInventory().removeItem(id);
+            return "Pochodeň dohořela.";
+        }
+
+        return "Osvětlil jsi temnou oblast.";
     }
 }
