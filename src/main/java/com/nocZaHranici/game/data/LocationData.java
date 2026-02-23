@@ -36,6 +36,22 @@ public class LocationData {
      * Východy
      */
     private Map<String, String> exits;
+    /**
+     * Temnota
+     */
+    private boolean dark;
+    /**
+     * Brána
+     */
+    private boolean hasGate;
+    /**
+     * Brána zavřená
+     */
+    private boolean gateLocked;
+    /**
+     * Sráz
+     */
+    private boolean hasCliff;
 
     /**
      * Vytvoří instanci lokace v souboru
@@ -43,13 +59,18 @@ public class LocationData {
      * @param name Jméno
      * @param description Popis
      */
-    public LocationData(String id, String name, String description) {
+    public LocationData(String id, String name, String description,
+                        boolean dark, boolean hasGate, boolean gateLocked, boolean hasCliff) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.items = new ArrayList<>();
         this.npcs = new ArrayList<>();
         this.exits = new HashMap<>();
+        this.dark = dark;
+        this.hasGate = hasGate;
+        this.gateLocked = gateLocked;
+        this.hasCliff = hasCliff;
     }
 
     public LocationData() {}
@@ -102,6 +123,38 @@ public class LocationData {
 
     public void setExits(Map<String, String> exits) {
         this.exits = exits;
+    }
+
+    public boolean isDark() {
+        return dark;
+    }
+
+    public void setDark(boolean dark) {
+        this.dark = dark;
+    }
+
+    public boolean isHasGate() {
+        return hasGate;
+    }
+
+    public void setHasGate(boolean hasGate) {
+        this.hasGate = hasGate;
+    }
+
+    public boolean isGateLocked() {
+        return gateLocked;
+    }
+
+    public void setGateLocked(boolean gateLocked) {
+        this.gateLocked = gateLocked;
+    }
+
+    public boolean isHasCliff() {
+        return hasCliff;
+    }
+
+    public void setHasCliff(boolean hasCliff) {
+        this.hasCliff = hasCliff;
     }
 
     // endregion

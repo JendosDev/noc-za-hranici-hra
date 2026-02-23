@@ -36,19 +36,43 @@ public class Location {
     private Map<String, Location> exits;
 
     /**
+     * Temnost
+     */
+    private boolean dark;
+    /**
+     * Brána
+     */
+    private boolean hasGate;
+    /**
+     * Brána uzavřená?
+     */
+    private boolean gateLocked;
+    /**
+     * Útes
+     */
+    private boolean hasCliff;
+
+    /**
      * Vytvoří instanci lokace
      * Inicializuje proměnné, seznamy a mapu
      * @param id Id
      * @param name Jméno
      * @param description Popis
      */
-    public Location(String id, String name, String description) {
+    public Location(String id, String name, String description,
+                    boolean dark, boolean hasGate, boolean gateLocked, boolean hasCliff) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.items = new HashMap<>();
         this.npcs = new ArrayList<>();
         this.exits = new HashMap<>();
+        this.dark = dark;
+        this.hasGate = hasGate;
+        this.gateLocked = gateLocked;
+        this.hasCliff = hasCliff;
+
+
     }
 
     // region get, set
@@ -105,7 +129,39 @@ public class Location {
         exits.put(direction, targetLocation);
     }
 
-    // endregion
+    public boolean isDark() {
+        return dark;
+    }
+
+    public void setDark(boolean dark) {
+        this.dark = dark;
+    }
+
+    public boolean isHasGate() {
+        return hasGate;
+    }
+
+    public void setHasGate(boolean hasGate) {
+        this.hasGate = hasGate;
+    }
+
+    public boolean isGateLocked() {
+        return gateLocked;
+    }
+
+    public void setGateLocked(boolean gateLocked) {
+        this.gateLocked = gateLocked;
+    }
+
+    public boolean isHasCliff() {
+        return hasCliff;
+    }
+
+    public void setHasCliff(boolean hasCliff) {
+        this.hasCliff = hasCliff;
+    }
+
+// endregion
 
     public NPC getNpc(String id) {
         for (NPC npc : npcs) {
@@ -135,5 +191,13 @@ public class Location {
      */
     public void removeItem(String key) {
         items.remove(key);
+    }
+
+    public void unlockGate() {
+        this.gateLocked = false;
+    }
+
+    public boolean hasGate() {
+        return hasGate = true;
     }
 }
