@@ -65,6 +65,12 @@ public class Player {
      */
     private boolean lightSource;
 
+    private boolean escaped;
+    /**
+     * Umrtí
+     */
+    private boolean dead;
+
     /**
      * Vytvoří instanci hráče
      */
@@ -173,6 +179,22 @@ public class Player {
 
     public void setLightSource(boolean lightSource) {
         this.lightSource = lightSource;
+    }
+
+    public boolean hasEscaped() {
+        return escaped;
+    }
+
+    public void setEscaped(boolean escaped) {
+        this.escaped = escaped;
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 
     @Override
