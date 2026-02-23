@@ -198,6 +198,6 @@ public class Location {
     }
 
     public boolean hasGate() {
-        return hasGate = true;
+        return hasGate;
     }
 }
