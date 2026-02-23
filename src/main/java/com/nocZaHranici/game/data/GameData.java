@@ -17,7 +17,7 @@ public class GameData {
     private List<QuestData> quests;
     private List<NPCData> npcs;
     private List<ItemData> items;
-    private Player player;
+
 
     /**
      * Vytvoří instanci herních dat
@@ -64,14 +64,6 @@ public class GameData {
         this.items = items;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     // endregion
 
     /**
@@ -104,5 +96,21 @@ public class GameData {
         } catch (Exception e) {
             throw new RuntimeException("Chyba při načítání JSON: " + e.getMessage());
         }
+    }
+
+    /**
+     * Vrací nalezený úkol podle zadaného id, pokud se úkolu shoduje se zadaným id
+     * @param questId Quest Id
+     * @return Nalezený úkol
+     */
+    public QuestData getQuestById(String questId) {
+
+        for (QuestData quest : quests) {
+            if (quest.getId().equals(questId)) {
+                return quest;
+            }
+        }
+
+        return null;
     }
 }
