@@ -33,7 +33,11 @@ public class GameWorld {
             Location location = new Location(
                     locationData.getId(),
                     locationData.getName(),
-                    locationData.getDescription()
+                    locationData.getDescription(),
+                    locationData.isDark(),
+                    locationData.isHasGate(),
+                    locationData.isGateLocked(),
+                    locationData.isHasCliff()
             );
 
             locations.put(location.getId(), location);
