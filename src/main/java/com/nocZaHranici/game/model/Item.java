@@ -115,7 +115,7 @@ public class Item {
                 '}';
     }
 
-    public String use(Game game, Player player) {
+    public String use(GameWorld game, Player player) {
         if (!usable) {
             return "Tento předmět nelze použít.";
         }
@@ -150,8 +150,8 @@ public class Item {
         }
     }
 
-    private String useRustyKey(Game game, Player player) {
-        Location location = game.getWorld()
+    private String useRustyKey(GameWorld world, Player player) {
+        Location location = world
                 .getLocation(player.getCurrentLocationId());
 
         if (location.isHasGate()) {
