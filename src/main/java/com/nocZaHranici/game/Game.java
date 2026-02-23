@@ -1,6 +1,7 @@
 package com.nocZaHranici.game;
 
 import com.nocZaHranici.game.command.Command;
+import com.nocZaHranici.game.command.CommandParser;
 import com.nocZaHranici.game.data.GameData;
 import com.nocZaHranici.game.model.GameWorld;
 import com.nocZaHranici.game.model.Location;
@@ -9,6 +10,7 @@ import com.nocZaHranici.game.model.Player;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Třída reprezentující herní logiku
@@ -81,13 +83,39 @@ public class Game {
         // Nápověda
         System.out.println("\n-------------------------------------");
         System.out.println("Dostupné příkazy:");
-        System.out.println("go <místo>");
-        System.out.println("look");
-        System.out.println("attack <npc>");
-        System.out.println("help");
+        System.out.println("jdi <místo>");
+        System.out.println("prozkoumej");
+        System.out.println("utoc <npc>");
+        System.out.println("napoveda");
         System.out.println("-------------------------------------");
 
         System.out.println("\nCo uděláš?");
+
+        Scanner scanner = new Scanner(System.in);
+        CommandParser parser = new CommandParser(world, player);
+
+        while (running) {
+            System.out.print("> ");
+            String input = scanner.nextLine();
+            parser.parse(input);
+            checkGameState();
+        }
+    }
+
+    /**
+     * Kontroluje zda hráč vyhrál či je mrtev
+     */
+    private void checkGameState() {
+
+        if (player.hasEscaped()) {
+            System.out.println("Úspěšně ses vrátil do světa lidí!");
+            running = false;
+        }
+
+        if (player.isDead()) {
+            System.out.println("Zůstal jsi uvězněn za hranicí...");
+            running = false;
+        }
     }
 
     // region get, set
