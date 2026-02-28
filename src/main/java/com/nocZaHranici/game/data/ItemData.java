@@ -30,6 +30,10 @@ public class ItemData {
      * Trvanlivost
      */
     private int durability;
+    /**
+     * Id lokace
+     */
+    private String locationId;
 
     /**
      * Vytvoří novou instanci předměty v souboru
@@ -39,15 +43,17 @@ public class ItemData {
      * @param usable Použitelnost
      * @param type Typ
      * @param durability Trvanlivost
+     * @param locationId Id lokace
      */
     public ItemData(String id, String name, String description,
-                    boolean usable, String type, int durability) {
+                    boolean usable, String type, int durability, String locationId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.usable = usable;
         this.type = type;
         this.durability = durability;
+        this.locationId = locationId;
     }
 
     public ItemData() {
@@ -102,6 +108,14 @@ public class ItemData {
 
     public void setDurability(int durability) {
         this.durability = durability;
+    }
+
+    public String getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(String locationId) {
+        this.locationId = locationId;
     }
 
     // endregion
