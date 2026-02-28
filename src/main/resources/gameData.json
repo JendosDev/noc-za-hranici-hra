@@ -122,12 +122,23 @@
 
   "items": [
     {
+      "id": "rusty_key",
+      "name": "Rezavý klíč",
+      "description": "Používá se k otevření staré brány",
+      "usable": true,
+      "type": "RUSTY_KEY",
+      "durability": 1,
+      "locationId": "forest_edge"
+    },
+
+    {
       "id": "torch",
       "name": "Pochodeň",
       "description": "Osvětluje temnotu.",
       "usable": true,
       "type": "TORCH",
-      "durability": 3
+      "durability": 3,
+      "locationId": "deep_forest"
     },
 
     {
@@ -136,7 +147,8 @@
       "description": "Obsahuje poznámky předchozího badatele.",
       "usable": false,
       "type": "NOTEBOOK",
-      "durability": -1
+      "durability": -1,
+      "locationId": "forest_edge"
     },
 
     {
@@ -145,7 +157,8 @@
       "description": "Zvláštní prach, který nelze zahodit.",
       "usable": false,
       "type": "BOUNDARY_DUST",
-      "durability": 0
+      "durability": 0,
+      "locationId": "deep_forest"
     },
 
     {
@@ -154,7 +167,8 @@
       "description": "Temný artefakt.",
       "usable": true,
       "type": "BLOODY_AMULET",
-      "durability": -1
+      "durability": -1,
+      "locationId": "ruins"
     },
 
     {
@@ -163,7 +177,8 @@
       "description": "Chrání před horským stínem.",
       "usable": true,
       "type": "MOUNTAIN_TALISMAN",
-      "durability": -1
+      "durability": -1,
+      "locationId": "mountains"
     },
 
     {
@@ -172,7 +187,8 @@
       "description": "Může se hodit.",
       "usable": true,
       "type": "ROPE",
-      "durability": 1
+      "durability": 1,
+      "locationId": "forest_city"
     }
   ],
 
