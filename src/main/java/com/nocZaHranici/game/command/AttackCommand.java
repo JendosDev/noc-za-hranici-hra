@@ -36,19 +36,32 @@ public class AttackCommand implements Command {
     @Override
     public String execute(String npcId) {
         if (npcId == null || npcId.isEmpty()) {
-            System.out.println("Koho chceš napadnout?");
+            return "Koho chceš napadnout? Zadej platné ID NPC.";
         }
 
         Location location = world.getLocation(player.getCurrentLocationId());
+        if (location == null) {
+            return "Chybí aktuální lokace hráče!";
+        }
 
         NPC npc = location.getNpc(npcId);
+        if (npc == null) {
+            return "NPC s tímto ID zde není.";
+        }
+
+        if (!npc.isAlive()) {
+            return npc.getName() + " už je mrtvý.";
+        }
 
         npc.takeDamage(player.getAttack());
 
+        String result = "Zaútočil jsi na " + npc.getName() + " za " + player.getAttack() + " HP.";
+
         if (!npc.isAlive()) {
-            System.out.println(npc.getName() + " zemřel.");
+            result += "\n" + npc.getName() + " zemřel.";
             location.removeNpc(npcId);
         }
-        return "Zaútočil jsi na " + npc + " za " + npc.getAttack() + " HP.";
+
+        return result;
     }
 }
