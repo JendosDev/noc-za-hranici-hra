@@ -31,6 +31,10 @@ public class NPC {
      * Útok
      */
     private int attack;
+    /**
+     * Id lokace
+     */
+    private String locationId;
 
     /**
      * Vytvoří novou instanci postavy
@@ -40,8 +44,10 @@ public class NPC {
      * @param description Popis
      * @param health Životy
      * @param attack Útok
+     * @param locationId Id lokace
      */
-    public NPC(String id, String name, String description, int health, int attack) {
+    public NPC(String id, String name, String description,
+               int health, int attack, String locationId) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -121,7 +127,7 @@ public class NPC {
 
         // příklad reakce podle questů
         if (player.getQuests().containsKey(id)) {
-            return dialogue.get(1); 
+            return dialogue.get(1);
         }
 
         return dialogue.get(0);
@@ -138,6 +144,4 @@ public class NPC {
         }
         return true;
     }
-
-
 }

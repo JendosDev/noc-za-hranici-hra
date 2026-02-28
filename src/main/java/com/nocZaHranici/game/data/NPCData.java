@@ -31,6 +31,10 @@ public class NPCData {
      * Útok
      */
     private int attack;
+    /**
+     * Id lokace
+     */
+    private String locationId;
 
     /**
      * Vytvoří novou instanci postavy v souboru
@@ -38,14 +42,19 @@ public class NPCData {
      * @param id Id
      * @param name Jméno
      * @param description Popis
+     * @param health Zdraví
+     * @param attack útok
+     * @param locationId Id lokace
      */
-    public NPCData(String id, String name, String description, int health, int attack) {
+    public NPCData(String id, String name, String description,
+                   int health, int attack, String locationId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.dialogue = new ArrayList<>();
         this.health = health;
         this.attack = attack;
+        this.locationId = locationId;
     }
 
     public NPCData() {
@@ -99,6 +108,14 @@ public class NPCData {
 
     public void setAttack(int attack) {
         this.attack = attack;
+    }
+
+    public String getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(String locationId) {
+        this.locationId = locationId;
     }
 
     // endregion
