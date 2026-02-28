@@ -23,6 +23,14 @@ public class NPCData {
      * Dialog postavy
      */
     private List<String> dialogue;
+    /**
+     * Zdraví
+     */
+    private int health;
+    /**
+     * Útok
+     */
+    private int attack;
 
     /**
      * Vytvoří novou instanci postavy v souboru
@@ -31,11 +39,13 @@ public class NPCData {
      * @param name Jméno
      * @param description Popis
      */
-    public NPCData(String id, String name, String description) {
+    public NPCData(String id, String name, String description, int health, int attack) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.dialogue = new ArrayList<>();
+        this.health = health;
+        this.attack = attack;
     }
 
     public NPCData() {
@@ -73,6 +83,22 @@ public class NPCData {
 
     public void setDialogue(List<String> dialogue) {
         this.dialogue = dialogue;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     // endregion
