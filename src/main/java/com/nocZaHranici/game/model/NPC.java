@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Třída reprezentující postavu ve hře
+ * @author Jan Karel Vesely
  */
 public class NPC {
     /**
@@ -35,6 +36,14 @@ public class NPC {
      * Id lokace
      */
     private String locationId;
+    /**
+     * Id získaného předmětu
+     */
+    private String dropItemId;
+    /**
+     * Agresivní
+     */
+    private boolean aggressive;
 
     /**
      * Vytvoří novou instanci postavy
@@ -45,15 +54,31 @@ public class NPC {
      * @param health Životy
      * @param attack Útok
      * @param locationId Id lokace
+     * @param dropItemId Id získaného předmětu
      */
     public NPC(String id, String name, String description,
-               int health, int attack, String locationId) {
+               int health, List<String> dialogue,
+               int attack, String locationId,
+               String dropItemId, boolean aggressive) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.dialogue = new ArrayList<>();
+        this.dialogue = dialogue;
         this.health = health;
         this.attack = attack;
+        this.locationId = locationId;
+        this.dropItemId = dropItemId;
+        this.aggressive = aggressive;
+    }
+
+    public NPC(String id, String name,
+               String description, int health, int attack, String locationId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.health = health;
+        this.attack = attack;
+        this.locationId = locationId;
     }
 
     // region get, set
@@ -106,6 +131,26 @@ public class NPC {
         this.attack = attack;
     }
 
+    public String getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(String locationId) {
+        this.locationId = locationId;
+    }
+
+    public void setDropItemId(String dropItemId) {
+        this.dropItemId = dropItemId;
+    }
+
+    public boolean isAggressive() {
+        return aggressive;
+    }
+
+    public void setAggressive(boolean aggressive) {
+        this.aggressive = aggressive;
+    }
+
     // endregion
 
     /**
@@ -143,5 +188,9 @@ public class NPC {
             return false;
         }
         return true;
+    }
+
+    public String getDropItemId() {
+        return dropItemId;
     }
 }
