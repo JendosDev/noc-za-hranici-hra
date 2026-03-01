@@ -1,7 +1,7 @@
 package com.nocZaHranici.game.model;
 
-import com.nocZaHranici.game.data.GameData;
-import com.nocZaHranici.game.data.LocationData;
+import com.nocZaHranici.game.data.*;
+import com.nocZaHranici.game.enums.ItemType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Třída reprezentující herní svět
+ * @author Jan Karel Vesely
  */
 public class GameWorld {
     /**
@@ -21,6 +22,10 @@ public class GameWorld {
      * Seznam lokací
      */
     private Map<String, Location> locations;
+    /**
+     * Seznam úkolů
+     */
+    private Map<String, Quest> quests;
 
     /**
      * Vytvoří herní svět na základě načtených dat
@@ -29,6 +34,7 @@ public class GameWorld {
      */
     public GameWorld(GameData data) {
         this.locations = new HashMap<>();
+        this.quests = new HashMap<>();
         for (LocationData locationData : data.getLocations()) {
             Location location = new Location(
                     locationData.getId(),
@@ -57,6 +63,67 @@ public class GameWorld {
                 }
             }
         }
+
+
+
+        for (ItemData itemData : data.getItems()) {
+            ItemType type = ItemType.valueOf(itemData.getType());
+
+            Item item = new Item(
+                    itemData.getId(),
+                    itemData.getName(),
+                    itemData.getDescription(),
+                    itemData.isUsable(),
+                    type,
+                    itemData.getDurability(),
+                    itemData.getLocationId()
+            );
+
+            String locationId = itemData.getLocationId();
+
+            Location location = locations.get(locationId);
+
+            if (location != null) {
+                location.getItems().put(item.getId(), item);
+            }
+        }
+
+        for (NPCData npcData : data.getNpcs()) {
+            NPC npc = new NPC(
+                npcData.getId(),
+                npcData.getName(),
+                npcData.getDescription(),
+                npcData.getHealth(),
+                npcData.getDialogue(),
+                npcData.getAttack(),
+                npcData.getLocationId(),
+                npcData.getDropItemId(),
+                npcData.isAggressive()
+            );
+
+            String locationId = npcData.getLocationId();
+
+            Location location = locations.get(locationId);
+
+            if (location != null) {
+                location.getNpcs().add(npc);
+            }
+        }
+
+        for (QuestData questData : data.getQuests()) {
+
+            Quest quest = new Quest(
+                    questData.getId(),
+                    questData.getName(),
+                    questData.getDescription(),
+                    questData.getRequiredItemId(),
+                    questData.getTargetNpcId(),
+                    questData.getRewardItemId(),
+                    questData.getObjectiveText()
+            );
+
+            quests.put(quest.getId(), quest);
+        }
     }
 
     public GameData getData() {
@@ -67,6 +134,14 @@ public class GameWorld {
         this.data = data;
     }
 
+    public Map<String, Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Map<String, Location> locations) {
+        this.locations = locations;
+    }
+
     public Location getLocation(String id) {
         return locations.get(id);
     }
@@ -75,5 +150,33 @@ public class GameWorld {
         for (String id : locations.keySet()) {
             System.out.println(id);
         }
+    }
+
+    public Quest getQuest(String argument) {
+        return quests.get(argument);
+    }
+
+    public Map<String, Quest> getQuests() {
+        return quests;
+    }
+
+    public Item createItemById(String id) {
+
+        for (ItemData itemData : data.getItems()) {
+            if (itemData.getId().equals(id)) {
+
+                return new Item(
+                        itemData.getId(),
+                        itemData.getName(),
+                        itemData.getDescription(),
+                        itemData.isUsable(),
+                        ItemType.valueOf(itemData.getType()),
+                        itemData.getDurability(),
+                        null
+                );
+            }
+        }
+
+        return null;
     }
 }
