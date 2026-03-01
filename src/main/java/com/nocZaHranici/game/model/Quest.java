@@ -29,6 +29,10 @@ public class Quest {
      */
     private String rewardItemId;
     /**
+     * Text cíle
+     */
+    private String objectiveText;
+    /**
      * Aktivní
      */
     private boolean active;
@@ -43,20 +47,28 @@ public class Quest {
      * @param id Id
      * @param name Jméno
      * @param description Popis
-     *
+     * @param requiredItemId Potřebné předměty
+     * @param targetNpcId Cílená postava
+     * @param rewardItemId Id odměny
+     * @param objectiveText Text cíle
      */
     public Quest(String id, String name, String description, String requiredItemId,
                  String targetNpcId,
-                 String rewardItemId) {
+                 String rewardItemId, String objectiveText) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.requiredItemId = requiredItemId;
         this.targetNpcId = targetNpcId;
         this.rewardItemId = rewardItemId;
+        this.objectiveText = objectiveText;
 
         this.active = false;
         this.completed = false;
+    }
+
+    public boolean activate() {
+        return active = true;
     }
 
     // region get, set
@@ -123,6 +135,14 @@ public class Quest {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getObjectiveText() {
+        return objectiveText;
+    }
+
+    public void setObjectiveText(String objectiveText) {
+        this.objectiveText = objectiveText;
     }
 
     // endregion

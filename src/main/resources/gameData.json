@@ -260,17 +260,39 @@
 
   "quests": [
     {
-      "id": "enter_forest",
-      "name": "Vstup do lesa",
-      "description": "Najdi bránu a vstup do lesa.",
-      "completed": false
+      "id": "karel_key",
+      "name": "Lesníkovo tajemství",
+      "description": "Lesník Karel hledá starý zápisník. Přines mu ho.",
+      "requiredItemId": "notebook",
+      "targetNpcId": "karel",
+      "rewardItemId": "rusty_key"
     },
 
     {
-      "id": "find_truth",
-      "name": "Odhal tajemství hranice",
-      "description": "Najdi cestu do jeskyně hranice.",
-      "completed": false
+      "id": "open_gate",
+      "name": "Otevři bránu",
+      "description": "Použij rezavý klíč k otevření brány do lesa.",
+      "requiredItemId": "rusty_key",
+      "targetNpcId": null,
+      "rewardItemId": null
+    },
+
+    {
+      "id": "ruins_trial",
+      "name": "Zkouška správce",
+      "description": "Prokaž svou hodnotu správci ruin.",
+      "requiredItemId": "amulet",
+      "targetNpcId": "ruins_keeper",
+      "rewardItemId": "mountain_talisman"
+    },
+
+    {
+      "id": "final_truth",
+      "name": "Odhal pravdu hranice",
+      "description": "Vstup do jeskyně hranice a dokonči svou cestu.",
+      "requiredItemId": "boundary_dust",
+      "targetNpcId": null,
+      "rewardItemId": null
     }
   ]
 }

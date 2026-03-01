@@ -17,23 +17,44 @@ public class QuestData {
      */
     private String description;
     /**
-     * Dokončeno
+     * Potřebné předměty
      */
-    private boolean completed;
+    private String requiredItemId;
+    /**
+     * Text cíle
+     */
+    private String objectiveText;
+    /**
+     * Cílená postava
+     */
+    private String targetNpcId;
+    /**
+     * Id odměny
+     */
+    private String rewardItemId;
 
     /**
      * Vytvoří instanci úkolu v souboru, nastaví základní hodnoty
      * @param id Id
      * @param name Jméno
      * @param description Popis
-     * @param completed Dokončeno
+     * @param requiredItemId Potřebné předměty
+     * @param targetNpcId Cílená postava
+     * @param rewardItemId Id odměny
+     * @param objectiveText Text cíle
      */
-    public QuestData(String id, String name, String description, boolean completed) {
+    public QuestData(String id, String name, String description,
+                     String requiredItemId, String targetNpcId,
+                     String rewardItemId, String objectiveText) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.completed = completed;
+        this.requiredItemId = requiredItemId;
+        this.targetNpcId = targetNpcId;
+        this.rewardItemId = rewardItemId;
+        this.objectiveText = objectiveText;
     }
+
 
     public QuestData() {}
 
@@ -63,13 +84,37 @@ public class QuestData {
         this.description = description;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    public String getRequiredItemId() {
+        return requiredItemId;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+    public void setRequiredItemId(String requiredItemId) {
+        this.requiredItemId = requiredItemId;
     }
 
-    // endregion
+    public String getTargetNpcId() {
+        return targetNpcId;
+    }
+
+    public void setTargetNpcId(String targetNpcId) {
+        this.targetNpcId = targetNpcId;
+    }
+
+    public String getRewardItemId() {
+        return rewardItemId;
+    }
+
+    public void setRewardItemId(String rewardItemId) {
+        this.rewardItemId = rewardItemId;
+    }
+
+    public String getObjectiveText() {
+        return objectiveText;
+    }
+
+    public void setObjectiveText(String objectiveText) {
+        this.objectiveText = objectiveText;
+    }
+
+// endregion
 }
