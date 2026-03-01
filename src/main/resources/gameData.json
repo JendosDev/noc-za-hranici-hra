@@ -91,18 +91,7 @@
       "id": "torture",
       "name": "Mučírna",
       "description": "Temné podzemí plné utrpení.",
-      "items": [],
-      "npcs": [],
-      "exits": {
-        "ruiny": "ruins"
-      }
-    },
-
-    {
-      "id": "torture",
-      "name": "Mučírna",
-      "description": "Temné podzemí plné utrpení.",
-      "items": [],
+      "items": ["nameless_shadows"],
       "npcs": [],
       "exits": {
         "ruiny": "ruins"
@@ -200,7 +189,10 @@
       "dialogue": [
         "Ten les není normální.",
         "Pokud půjdeš dál, nemusíš se vrátit."
-      ]
+      ],
+      "health": 80,
+      "damage": 0,
+      "locationId": "forest_edge"
     },
 
     {
@@ -210,7 +202,10 @@
       "dialogue": [
         "Viděl jsem bránu.",
         "Ale možná si to jen myslím."
-      ]
+      ],
+      "health": 70,
+      "damage": 10,
+      "locationId": "village"
     },
 
     {
@@ -220,7 +215,10 @@
       "dialogue": [
         "Udělal jsem chybu.",
         "Neopakuj ji."
-      ]
+      ],
+      "health": 2147483647,
+      "damage": 0,
+      "locationId": "deep_forest"
     },
 
     {
@@ -230,7 +228,10 @@
       "dialogue": [
         "Hranice tě sleduje.",
         "Tvá volba rozhodne."
-      ]
+      ],
+      "health": "120",
+      "damage": 12,
+      "locationId": "deep_forest"
     },
 
     {
@@ -240,7 +241,20 @@
       "dialogue": [
         "Pouze hodný může projít.",
         "Prokaž svou hodnotu."
-      ]
+      ],
+      "health": 150,
+      "damage": 15,
+      "locationId": "ruins"
+    },
+
+    {
+      "id": "nameless_shadows",
+      "name": "Bezejmenné štíty",
+      "description": "Neustálá tajemná hrozba",
+      "dialogue": [],
+      "health": 40,
+      "damage": 5,
+      "locationId": "torture"
     }
   ],
 

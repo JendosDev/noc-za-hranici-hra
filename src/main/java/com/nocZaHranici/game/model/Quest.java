@@ -17,6 +17,22 @@ public class Quest {
      */
     private String description;
     /**
+     * Potřebné předměty
+     */
+    private String requiredItemId;
+    /**
+     * Cílená postava
+     */
+    private String targetNpcId;
+    /**
+     * Id odměny
+     */
+    private String rewardItemId;
+    /**
+     * Aktivní
+     */
+    private boolean active;
+    /**
      * Dokončeno
      */
     private boolean completed;
@@ -27,13 +43,20 @@ public class Quest {
      * @param id Id
      * @param name Jméno
      * @param description Popis
-     * @param completed Dokončeno
+     *
      */
-    public Quest(String id, String name, String description, boolean completed) {
+    public Quest(String id, String name, String description, String requiredItemId,
+                 String targetNpcId,
+                 String rewardItemId) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.completed = completed;
+        this.requiredItemId = requiredItemId;
+        this.targetNpcId = targetNpcId;
+        this.rewardItemId = rewardItemId;
+
+        this.active = false;
+        this.completed = false;
     }
 
     // region get, set
@@ -68,6 +91,38 @@ public class Quest {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public String getRequiredItemId() {
+        return requiredItemId;
+    }
+
+    public void setRequiredItemId(String requiredItemId) {
+        this.requiredItemId = requiredItemId;
+    }
+
+    public String getTargetNpcId() {
+        return targetNpcId;
+    }
+
+    public void setTargetNpcId(String targetNpcId) {
+        this.targetNpcId = targetNpcId;
+    }
+
+    public String getRewardItemId() {
+        return rewardItemId;
+    }
+
+    public void setRewardItemId(String rewardItemId) {
+        this.rewardItemId = rewardItemId;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     // endregion
