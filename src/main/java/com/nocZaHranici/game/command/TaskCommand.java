@@ -1,15 +1,12 @@
 package com.nocZaHranici.game.command;
 
-import com.nocZaHranici.game.QuestState;
 import com.nocZaHranici.game.model.GameWorld;
 import com.nocZaHranici.game.model.Player;
 import com.nocZaHranici.game.model.Quest;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Třída reprezentující příkaz úkolů ve hře
+ * @author Jan Karel Vesely
  */
 public class TaskCommand implements Command {
     /**
@@ -38,23 +35,48 @@ public class TaskCommand implements Command {
 
     @Override
     public String execute(String argument) {
-        Map<String, QuestState> quests = player.getQuests();
+        if (argument == null || argument.isEmpty()) {
 
-        if (quests.isEmpty()) {
-            return "Nemáš žádné úkoly.";
+            StringBuilder sb = new StringBuilder("Dostupné úkoly:\n");
+
+            for (Quest quest : world.getQuests().values()) {
+
+                sb.append("- ")
+                        .append(quest.getId())
+                        .append(" | ")
+                        .append(quest.getName());
+
+                if (quest.isActive()) {
+                    sb.append(" (aktivní)");
+                }
+
+                if (quest.isCompleted()) {
+                    sb.append(" (splněno)");
+                }
+
+                sb.append("\n");
+            }
+
+            return sb.toString();
         }
 
-        StringBuilder sb = new StringBuilder("Úkoly:\n");
+        Quest quest = world.getQuest(argument);
 
-        for (Map.Entry<String, QuestState> entry : quests.entrySet()) {
-
-            sb.append("- ")
-                    .append(entry.getKey())
-                    .append(" (")
-                    .append(entry.getValue())
-                    .append(")\n");
+        if (quest == null) {
+            return "Takový úkol neexistuje.";
         }
 
-        return sb.toString();
+        if (quest.isCompleted()) {
+            return "Tento úkol už je splněn.";
+        }
+
+        if (quest.isActive()) {
+            return "Tento úkol už je aktivní.";
+        }
+
+        quest.activate();
+        return "Aktivoval jsi úkol: " + quest.getName()
+                + "\nPopis: " + quest.getDescription()
+                + "\nPotřebný předmět: " + quest.getRequiredItemId();
     }
 }
