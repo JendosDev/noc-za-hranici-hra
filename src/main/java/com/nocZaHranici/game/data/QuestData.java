@@ -2,6 +2,7 @@ package com.nocZaHranici.game.data;
 
 /**
  * Třída reprezentující úkoly v souboru
+ * @author Jan Karel Vesely
  */
 public class QuestData {
     /**

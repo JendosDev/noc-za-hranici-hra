@@ -7,6 +7,7 @@ import com.nocZaHranici.game.model.Player;
 
 /**
  * Třída reprezentující příkaz vezmi ve hře
+ * @author Jan Karel Vesely
  */
 public class TakeCommand implements Command {
     /**

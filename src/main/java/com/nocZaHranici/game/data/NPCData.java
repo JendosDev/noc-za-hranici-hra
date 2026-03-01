@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Třída reprezentující postavu v souboru
+ * @author Jan Karel Vesely
  */
 public class NPCData {
     /**
@@ -35,6 +36,14 @@ public class NPCData {
      * Id lokace
      */
     private String locationId;
+    /**
+     * Id získaného předmětu
+     */
+    private String dropItemId;
+    /**
+     * Agresivní
+     */
+    private boolean aggressive;
 
     /**
      * Vytvoří novou instanci postavy v souboru
@@ -47,7 +56,8 @@ public class NPCData {
      * @param locationId Id lokace
      */
     public NPCData(String id, String name, String description,
-                   int health, int attack, String locationId) {
+                   int health, int attack,
+                   String locationId, String dropItemId, boolean aggressive) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -55,6 +65,8 @@ public class NPCData {
         this.health = health;
         this.attack = attack;
         this.locationId = locationId;
+        this.dropItemId = dropItemId;
+        this.aggressive = aggressive;
     }
 
     public NPCData() {
@@ -116,6 +128,22 @@ public class NPCData {
 
     public void setLocationId(String locationId) {
         this.locationId = locationId;
+    }
+
+    public String getDropItemId() {
+        return dropItemId;
+    }
+
+    public void setDropItemId(String dropItemId) {
+        this.dropItemId = dropItemId;
+    }
+
+    public boolean isAggressive() {
+        return aggressive;
+    }
+
+    public void setAggressive(boolean aggressive) {
+        this.aggressive = aggressive;
     }
 
     // endregion

@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * Třída reprezentující lokace v souboru
+ * @author Jan Karel Vesely
  */
 public class LocationData {
     /**

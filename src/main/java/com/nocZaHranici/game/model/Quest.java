@@ -2,6 +2,7 @@ package com.nocZaHranici.game.model;
 
 /**
  * Třída reprezentující úkol ve hře
+ * @author Jan Karel Vesely
  */
 public class Quest {
     /**

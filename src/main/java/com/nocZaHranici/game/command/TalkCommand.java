@@ -7,6 +7,7 @@ import com.nocZaHranici.game.model.Player;
 
 /**
  * Třída reprezentující příkaz pro mluvení ve hře
+ * @author Jan Karel Vesely
  */
 public class TalkCommand implements Command {
     /**
