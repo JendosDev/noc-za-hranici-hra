@@ -5,6 +5,7 @@ import com.nocZaHranici.game.model.Player;
 
 /**
  * Třída reprezentující příkaz nápovědy ve hře
+ * @author Jan Karel Vesely
  */
 public class HelpCommand implements Command {
     /**

@@ -1,13 +1,10 @@
 package com.nocZaHranici.game.command;
 
-import com.nocZaHranici.game.QuestState;
-import com.nocZaHranici.game.data.QuestData;
 import com.nocZaHranici.game.model.*;
-
-import java.util.Map;
 
 /**
  * Třída reprezentující příkaz prozkoumání ve hře
+ * @author Jan Karel Vesely
  */
 public class ExploreCommand implements Command {
     /**
@@ -85,6 +82,23 @@ public class ExploreCommand implements Command {
                     sb.append("- ")
                             .append(direction)
                             .append("\n"));
+        }
+
+        // Aktivní úkoly
+        boolean hasActiveQuest = false;
+
+        for (Quest quest : world.getQuests().values()) {
+            if (quest.isActive() && !quest.isCompleted()) {
+
+                if (!hasActiveQuest) {
+                    sb.append("\nÚkoly:\n");
+                    hasActiveQuest = true;
+                }
+
+                sb.append("- ")
+                        .append(quest.getObjectiveText())
+                        .append("\n");
+            }
         }
 
         return sb.toString();

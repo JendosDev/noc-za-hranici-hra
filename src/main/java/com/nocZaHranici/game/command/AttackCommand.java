@@ -1,12 +1,10 @@
 package com.nocZaHranici.game.command;
 
-import com.nocZaHranici.game.model.GameWorld;
-import com.nocZaHranici.game.model.Location;
-import com.nocZaHranici.game.model.NPC;
-import com.nocZaHranici.game.model.Player;
+import com.nocZaHranici.game.model.*;
 
 /**
  * Třída reprezentující příkaz útoku ve hře
+ * @author Jan Karel Vesely
  */
 public class AttackCommand implements Command {
     /**
@@ -53,15 +51,60 @@ public class AttackCommand implements Command {
             return npc.getName() + " už je mrtvý.";
         }
 
-        npc.takeDamage(player.getAttack());
+        StringBuilder result = new StringBuilder();
 
-        String result = "Zaútočil jsi na " + npc.getName() + " za " + player.getAttack() + " HP.";
+        // 🗡 Hráč útočí
+        int playerDamage = player.getAttack();
+        npc.takeDamage(playerDamage);
+
+        result.append("Zaútočil jsi na ")
+                .append(npc.getName())
+                .append(" za ")
+                .append(playerDamage)
+                .append(" HP.\n");
 
         if (!npc.isAlive()) {
-            result += "\n" + npc.getName() + " zemřel.";
+            result.append(npc.getName()).append(" zemřel.");
             location.removeNpc(npcId);
+            return result.toString();
         }
 
-        return result;
+        // ⚔ NPC vrací útok
+        int npcDamage = npc.getAttack();
+        player.setHealth(player.getHealth() - npcDamage);
+
+        result.append(npc.getName())
+                .append(" ti útok vrátil za ")
+                .append(npcDamage)
+                .append(" HP.\n");
+
+        // ☠ Hráč zemřel?
+        if (player.getHealth() <= 0) {
+            result.append("Zemřel jsi.");
+        } else {
+            result.append("Zbývá ti ")
+                    .append(player.getHealth())
+                    .append(" HP.");
+        }
+
+        if (!npc.isAlive()) {
+            result.append(npc.getName()).append(" zemřel.\n");
+
+            // DROP ITEMU
+            String dropId = npc.getDropItemId();
+            if (dropId != null) {
+                Item droppedItem = world.createItemById(dropId);
+                location.getItems().put(droppedItem.getId(), droppedItem);
+
+                result.append("Z nepřítele vypadl: ")
+                        .append(droppedItem.getName())
+                        .append("\n");
+            }
+
+            location.removeNpc(npcId);
+            return result.toString();
+        }
+
+        return result.toString();
     }
 }

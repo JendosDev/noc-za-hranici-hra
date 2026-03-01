@@ -8,19 +8,27 @@
       "npcs": ["havel"],
       "exits": {
         "les": "forest_edge"
-      }
+      },
+      "dark": false,
+      "hasGate": false,
+      "gateLocked": false,
+      "hasCliff": false
     },
 
     {
       "id": "forest_edge",
       "name": "Okraj lesa",
       "description": "Temné stromy a podivné ticho. Máš pocit, že tě někdo sleduje.",
-      "items": ["notebook"],
+      "items": ["notebook", "rusty_key"],
       "npcs": ["karel"],
       "exits": {
         "vesnice": "village",
         "brana": "gate"
-      }
+      },
+      "dark": false,
+      "hasGate": false,
+      "gateLocked": false,
+      "hasCliff": false
     },
 
     {
@@ -32,7 +40,11 @@
       "exits": {
         "zpet": "forest_edge",
         "hranice": "deep_forest"
-      }
+      },
+      "dark": false,
+      "hasGate": true,
+      "gateLocked": true,
+      "hasCliff": false
     },
 
     {
@@ -46,7 +58,11 @@
         "mesto": "forest_city",
         "hory": "mountains",
         "ruiny": "ruins"
-      }
+      },
+      "dark": true,
+      "hasGate": false,
+      "gateLocked": false,
+      "hasCliff": false
     },
 
     {
@@ -57,8 +73,13 @@
       "npcs": [],
       "exits": {
         "les": "deep_forest",
-        "ruiny": "ruins"
-      }
+        "ruiny": "ruins",
+        "hory": "montains"
+      },
+      "dark": false,
+      "hasGate": false,
+      "gateLocked": false,
+      "hasCliff": false
     },
 
     {
@@ -70,7 +91,11 @@
       "exits": {
         "les": "deep_forest",
         "jeskyne": "final_cave"
-      }
+      },
+      "dark": false,
+      "hasGate": false,
+      "gateLocked": false,
+      "hasCliff": false
     },
 
     {
@@ -84,7 +109,11 @@
         "mesto": "forest_city",
         "mucirna": "torture",
         "jeskyne": "final_cave"
-      }
+      },
+      "dark": false,
+      "hasGate": false,
+      "gateLocked": false,
+      "hasCliff": true
     },
 
     {
@@ -95,7 +124,11 @@
       "npcs": [],
       "exits": {
         "ruiny": "ruins"
-      }
+      },
+      "dark": false,
+      "hasGate": false,
+      "gateLocked": false,
+      "hasCliff": false
     },
 
     {
@@ -105,7 +138,11 @@
       "items": [],
       "npcs": [],
       "exits": {
-      }
+      },
+      "dark": true,
+      "hasGate": false,
+      "gateLocked": false,
+      "hasCliff": false
     }
   ],
 
@@ -178,6 +215,16 @@
       "type": "ROPE",
       "durability": 1,
       "locationId": "forest_city"
+    },
+
+    {
+      "id": "health_potion",
+      "name": "Léčivý lektvar",
+      "description": "Obnoví 30 HP.",
+      "usable": true,
+      "type": "HEALTH_POTION",
+      "durability": 1,
+      "locationId": null
     }
   ],
 
@@ -187,12 +234,14 @@
       "name": "Lesník Karel",
       "description": "Starý lesník, který ví více, než říká.",
       "dialogue": [
-        "Ten les není normální.",
+        "Ten les není normální. Nacházel se zde starý klíč u studny (rusty_key)",
         "Pokud půjdeš dál, nemusíš se vrátit."
       ],
       "health": 80,
-      "damage": 0,
-      "locationId": "forest_edge"
+      "attack": 0,
+      "locationId": "forest_edge",
+      "dropItemId": "health_potion",
+      "aggressive": false
     },
 
     {
@@ -204,8 +253,10 @@
         "Ale možná si to jen myslím."
       ],
       "health": 70,
-      "damage": 10,
-      "locationId": "village"
+      "attack": 10,
+      "locationId": "village",
+      "dropItemId": "health_potion",
+      "aggressive": false
     },
 
     {
@@ -218,7 +269,9 @@
       ],
       "health": 2147483647,
       "damage": 0,
-      "locationId": "deep_forest"
+      "locationId": "deep_forest",
+      "dropItemId": "health_potion",
+      "aggressive": false
     },
 
     {
@@ -229,9 +282,11 @@
         "Hranice tě sleduje.",
         "Tvá volba rozhodne."
       ],
-      "health": "120",
-      "damage": 12,
-      "locationId": "deep_forest"
+      "health": 120,
+      "attack": 12,
+      "locationId": "deep_forest",
+      "dropItemId": "health_potion",
+      "aggressive": true
     },
 
     {
@@ -243,8 +298,10 @@
         "Prokaž svou hodnotu."
       ],
       "health": 150,
-      "damage": 15,
-      "locationId": "ruins"
+      "attack": 15,
+      "locationId": "ruins",
+      "dropItemId": "health_potion",
+      "aggressive": true
     },
 
     {
@@ -253,8 +310,10 @@
       "description": "Neustálá tajemná hrozba",
       "dialogue": [],
       "health": 40,
-      "damage": 5,
-      "locationId": "torture"
+      "attack": 5,
+      "locationId": "torture",
+      "dropItemId": "health_potion",
+      "aggressive": false
     }
   ],
 

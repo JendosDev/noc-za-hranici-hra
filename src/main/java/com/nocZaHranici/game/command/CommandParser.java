@@ -11,6 +11,7 @@ import java.util.Scanner;
  * Třída sloužící ke zpracování hráčových příkazů.
  * Uchovává mapu dostupných příkazů a podle vstupu hráče
  * vyhledá a vykoná odpovídající příkaz.
+ * @author Jan Karel Vesely
  */
 public class CommandParser {
     /**

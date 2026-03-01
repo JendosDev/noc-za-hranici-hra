@@ -12,6 +12,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Třída reprezentující herní data
+ * @author Jan Karel Vesely
+ */
 public class GameData {
     private List<LocationData> locations;
     private List<QuestData> quests;

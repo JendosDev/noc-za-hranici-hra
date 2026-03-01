@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * Třída reprezentující lokaci ve hře
+ * @author Jan Karel Vesely
  */
 public class Location {
     /**
@@ -199,5 +200,18 @@ public class Location {
 
     public boolean hasGate() {
         return hasGate;
+    }
+
+    /**
+     * Hledá agresivní postavu
+     * @return Vrací agresivní postavu
+     */
+    public NPC getFirstAggressiveNpc() {
+        for (NPC npc : npcs) {
+            if (npc.isAggressive() && npc.isAlive()) {
+                return npc;
+            }
+        }
+        return null;
     }
 }

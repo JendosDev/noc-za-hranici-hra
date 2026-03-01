@@ -4,6 +4,7 @@ import com.nocZaHranici.game.enums.ItemType;
 
 /**
  * Tčída reprezentující předměty v souboru
+ * @author Jan Karel Vesely
  */
 public class ItemData {
     /**

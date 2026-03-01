@@ -6,6 +6,7 @@ import java.util.*;
 
 /**
  * Třída reprezentující hráčův inventář ve hře
+ * @author Jan Karel Veselya
  */
 public class Inventory {
     private Map<String, Item> items;

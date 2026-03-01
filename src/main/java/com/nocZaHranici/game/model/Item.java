@@ -5,6 +5,7 @@ import com.nocZaHranici.game.enums.ItemType;
 
 /**
  * Třída reprezentující předměty ve hře
+ * @author Jan Karel Vesely
  */
 public class Item {
     /**
@@ -157,10 +158,25 @@ public class Item {
 
             case BOUNDARY_DUST:
                 return "Prach z hranice nelze odstranit.";
+            case HEALTH_POTION:
+                return useHealthPotion(player);
 
             default:
                 return "Nelze použít.";
         }
+    }
+
+    private String useHealthPotion(Player player) {
+        int healAmount = 30;
+
+        if (player.getHealth() >= 100) {
+            return "Máš plné zdraví, lektvar teď nepotřebuješ.";
+        }
+
+        player.heal(healAmount);
+        player.getInventory().removeItem(id); // spotřebuje se
+
+        return "Vypil jsi lektvar a doplnil " + healAmount + " HP. Aktuální HP: " + player.getHealth();
     }
 
     private String useRustyKey(GameWorld world, Player player) {

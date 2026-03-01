@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 /**
  * Třída reprezentující herní logiku
+ * @author Jan Karel Vesely
  */
 public class Game {
     private Player player;
@@ -94,11 +95,16 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         CommandParser parser = new CommandParser(world, player);
 
-        while (running) {
+        while (running && player.isAlive()) {
             System.out.print("> ");
             String input = scanner.nextLine();
             parser.parse(input);
             checkGameState();
+
+            if (!player.isAlive()) {
+                System.out.println("💀 Zemřel jsi. Konec hry.");
+                running = false;
+            }
         }
     }
 
