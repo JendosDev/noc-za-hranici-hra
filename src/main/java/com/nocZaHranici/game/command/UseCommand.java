@@ -1,11 +1,13 @@
 package com.nocZaHranici.game.command;
 
+import com.nocZaHranici.game.enums.ItemType;
 import com.nocZaHranici.game.model.GameWorld;
 import com.nocZaHranici.game.model.Item;
 import com.nocZaHranici.game.model.Player;
 
 /**
  * Třída reprezentující příkaz pro použití předmětu ve hře
+ * @author Jan Karel Vesely
  */
 public class UseCommand implements Command {
     /**
@@ -42,6 +44,20 @@ public class UseCommand implements Command {
 
         if (item == null) {
             return "Tento předmět nemáš.";
+        }
+
+        if (item.getType() == ItemType.HEALTH_POTION) {
+
+            int healAmount = 50;
+
+            player.setHealth(player.getHealth() + healAmount);
+
+            player.getInventory().removeItem(item.getId());
+
+            return "Použil jsi léčivý lektvar. Obnovil jsi "
+                    + healAmount
+                    + " HP. Aktuální HP: "
+                    + player.getHealth();
         }
 
         return item.use(world, player);
