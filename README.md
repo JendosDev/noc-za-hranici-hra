@@ -32,36 +32,3 @@ Příkazy se zadávají do konzole ve formátu: `prikaz argument`
 2. Spusť:
    ```bash
    java -jar noc-za-hranici.jar
-
-> Pokud máš jiné názvy tříd / jar jméno, uprav.
-
----
-
-## 5) Jak vyrobit spustitelný .jar v IntelliJ (rychle)
-### Varianta A: Artifact (nejjednodušší ve škole)
-1. **File → Project Structure…**
-2. **Artifacts → + → JAR → From modules with dependencies**
-3. Vyber `Main` jako Main Class
-4. Zaškrtni **Extract to the target JAR** (ať se přibalí knihovny jako Gson)
-5. OK
-6. **Build → Build Artifacts… → Build**
-
-V `out/artifacts/...` najdeš jar.
-
-### Varianta B: Maven/Gradle (pokud používáš)
-- Maven: `mvn package`
-- Gradle: `gradle shadowJar` / `gradle build`
-  Ale pokud to máš “school style” bez build systému, Artifact je jistota.
-
----
-
-## 6) Mini věci, co ti zvednou body
-- V `napoveda` vypiš i příklady použití
-- V `prozkoumej` vypisuj předměty i s jejich **ID**, aby hráč věděl co napsat do `vezmi/pouzij`
-    - např. `Rezavý klíč (rusty_key)`
-- Když hráč umře → vypiš konec hry + zastav loop (`running=false`)
-- Do repa přidej i `gameData.json` do resources (a zkontroluj že je v jaru)
-
----
-
-Jestli chceš, pošli mi výpis tvých příkazů (jak přesně se jmenují v parseru) a já ti upravím README, aby seděl 1:1 k tvé hře (ať tě nikdo nenachytá, že “README lže”).
