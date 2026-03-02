@@ -53,7 +53,6 @@ public class AttackCommand implements Command {
 
         StringBuilder result = new StringBuilder();
 
-        // 🗡 Hráč útočí
         int playerDamage = player.getAttack();
         npc.takeDamage(playerDamage);
 
@@ -64,45 +63,37 @@ public class AttackCommand implements Command {
                 .append(" HP.\n");
 
         if (!npc.isAlive()) {
-            result.append(npc.getName()).append(" zemřel.");
+            result.append(npc.getName()).append(" zemřel.\n");
+
+            String dropId = npc.getDropItemId();
+            if (dropId != null && !dropId.isEmpty()) {
+                Item droppedItem = world.createItemById(dropId);
+
+                if (droppedItem != null) {
+                    location.getItems().put(droppedItem.getId(), droppedItem);
+                    result.append("Z nepřítele vypadl: ")
+                            .append(droppedItem.getName())
+                            .append("\n");
+                }
+            }
+
+            player.heal(50);
             location.removeNpc(npcId);
             return result.toString();
         }
 
-        // ⚔ NPC vrací útok
         int npcDamage = npc.getAttack();
-        player.setHealth(player.getHealth() - npcDamage);
+        player.takeDamage(npcDamage);
 
         result.append(npc.getName())
                 .append(" ti útok vrátil za ")
                 .append(npcDamage)
                 .append(" HP.\n");
 
-        // ☠ Hráč zemřel?
-        if (player.getHealth() <= 0) {
-            result.append("Zemřel jsi.");
+        if (!player.isAlive()) {
+            result.append("💀 Zemřel jsi.");
         } else {
-            result.append("Zbývá ti ")
-                    .append(player.getHealth())
-                    .append(" HP.");
-        }
-
-        if (!npc.isAlive()) {
-            result.append(npc.getName()).append(" zemřel.\n");
-
-            // DROP ITEMU
-            String dropId = npc.getDropItemId();
-            if (dropId != null) {
-                Item droppedItem = world.createItemById(dropId);
-                location.getItems().put(droppedItem.getId(), droppedItem);
-
-                result.append("Z nepřítele vypadl: ")
-                        .append(droppedItem.getName())
-                        .append("\n");
-            }
-
-            location.removeNpc(npcId);
-            return result.toString();
+            result.append("Zbývá ti ").append(player.getHealth()).append(" HP.");
         }
 
         return result.toString();
