@@ -56,7 +56,6 @@
       "exits": {
         "brana": "gate",
         "mesto": "forest_city",
-        "hory": "mountains",
         "ruiny": "ruins"
       },
       "dark": true,
@@ -123,7 +122,8 @@
       "items": ["nameless_shadows"],
       "npcs": [],
       "exits": {
-        "ruiny": "ruins"
+        "ruiny": "ruins",
+        "jeskyne": "final_cave"
       },
       "dark": false,
       "hasGate": false,
@@ -138,11 +138,23 @@
       "items": [],
       "npcs": [],
       "exits": {
+        "mucirna": "torture",
+        "hory": "mountains",
+        "ven": "final_exit"
       },
       "dark": true,
       "hasGate": false,
       "gateLocked": false,
       "hasCliff": false
+    },
+
+    {
+      "id": "final_exit",
+      "name": "Návrat za hranici",
+      "description": "Světlo. Chladný vzduch. Hranice povolila. Udělal jsi poslední krok... a přežil jsi noc za hranicí.",
+      "items": [],
+      "npcs": [],
+      "exits": {}
     }
   ],
 
@@ -220,7 +232,7 @@
     {
       "id": "health_potion",
       "name": "Léčivý lektvar",
-      "description": "Obnoví 30 HP.",
+      "description": "Obnoví 50 HP.",
       "usable": true,
       "type": "HEALTH_POTION",
       "durability": 1,
