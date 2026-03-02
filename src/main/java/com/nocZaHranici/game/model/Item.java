@@ -199,11 +199,14 @@ public class Item {
 
         durability--;
 
+        player.setLightSource(true);
+
         if (durability == 0) {
             player.getInventory().removeItem(id);
+            player.setLightSource(false);
             return "Pochodeň dohořela.";
         }
 
-        return "Osvětlil jsi temnou oblast.";
+        return "Rozsvítil jsi pochodeň. Jeskyně je nyní osvětlena.";
     }
 }
