@@ -49,19 +49,26 @@ public class GoCommand implements Command {
         }
 
         Location current = world.getLocation(player.getCurrentLocationId());
-
         if (current == null) {
             return "Aktuální lokace neexistuje.";
         }
 
         Location next = current.getExits().get(direction);
-
         if (next == null) {
             return "Tímto směrem nemůžeš jít.";
         }
 
-        if (current.isHasGate() && current.isGateLocked()) {
+        if ("gate".equals(current.getId()) &&
+                "final_cave".equals(next.getId()) &&
+                current.isGateLocked()) {
+
             return "Brána je zamčená.";
+        }
+
+        if ("final_cave".equals(current.getId()) &&
+                !player.hasLightSource()) {
+
+            return "Je zde absolutní tma. Bez pochodně nenajdeš cestu ven.";
         }
 
         player.setCurrentLocationId(next.getId());
@@ -70,18 +77,54 @@ public class GoCommand implements Command {
         sb.append("Nyní jsi v: ").append(next.getName()).append("\n");
         sb.append(next.getDescription()).append("\n");
 
+        // 🏆 FINÁLNÍ VÍTĚZSTVÍ
+        if ("final_exit".equals(next.getId())) {
+
+            if (player.isAmuletEquipped() && player.hasLightSource()) {
+
+                sb.append("\n=====================================\n");
+                sb.append("✨ VÍTĚZSTVÍ ✨\n");
+                sb.append("Odhalil jsi tajemství hranice.\n");
+                sb.append("Temnota ustupuje a les konečně mlčí.\n");
+                sb.append("Hranice tě propouští zpět do světa lidí.\n");
+                sb.append("Přežil jsi noc za hranicí.\n");
+                sb.append("=====================================\n");
+
+                player.setEscaped(true);
+                return sb.toString();
+            }
+            else {
+                sb.append("\nCítíš, že zde něco chybí.\n");
+
+                if (!player.isAmuletEquipped()) {
+                    sb.append("Bez zakrváceného amuletu zde nemáš šanci.\n");
+                }
+
+                if (!player.hasLightSource()) {
+                    sb.append("Tma je příliš silná bez světla.\n");
+                }
+
+                return sb.toString();
+            }
+        }
+
+        // ⚔️ Aggressive NPC útok
         NPC attacker = next.getFirstAggressiveNpc();
         if (attacker != null) {
+
             int dmg = attacker.getAttack();
             player.takeDamage(dmg);
 
-            sb.append("\n⚠️ ").append(attacker.getName())
+            sb.append("\n⚠️ ")
+                    .append(attacker.getName())
                     .append(" na tebe zaútočil jako první a způsobil ")
-                    .append(dmg).append(" HP!\n");
+                    .append(dmg)
+                    .append(" HP!\n");
+
             sb.append("Tvoje HP: ").append(player.getHealth()).append("\n");
 
             if (!player.isAlive()) {
-                sb.append("💀 Zemřel jsi.");
+                sb.append("💀 Zemřel jsi.\n");
             }
         }
 
