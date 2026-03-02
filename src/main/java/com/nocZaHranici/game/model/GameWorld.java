@@ -35,6 +35,7 @@ public class GameWorld {
     public GameWorld(GameData data) {
         this.locations = new HashMap<>();
         this.quests = new HashMap<>();
+        this.data = data;
         for (LocationData locationData : data.getLocations()) {
             Location location = new Location(
                     locationData.getId(),
